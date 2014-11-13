@@ -3,7 +3,7 @@
 
 	<!-- Properties set by DevEnv before writing script to file -->
 	<!-- POINT THE WORKSPACE TO YOUR SOURCE DIRECTORY -->
-	-->
+	
 	<property name="project.name" value="openMAXIMS" />
 	<property name="dbtype" value="MSQ05" />
 	<property name="hib.version" value="3" />
@@ -48,7 +48,7 @@
 				</patternset>
 			</fileset>
 		</delete>		
-		<javac encoding="UTF-8" encoding="UTF-8" debug="on" classpath="${ant_classpath};${libdir}jodconverter-core-3.0-beta-3.jar;${workspace}DomainObjects/bin/;${workspace}ValueObjects/bin/;${workspace}Admin/bin/;${workspace}Clinical/bin/;${workspace}Alerts/bin/;${workspace}Core/bin/;${workspace}DTOClients/bin/;" destdir="${workspace}Correspondence/bin/" srcdir="${workspace}Correspondence/src/"  includes="**/*.java" />
+		<javac encoding="UTF-8" debug="on" classpath="${ant_classpath};${libdir}jodconverter-core-3.0-beta-3.jar;${workspace}DomainObjects/bin/;${workspace}ValueObjects/bin/;${workspace}Admin/bin/;${workspace}Clinical/bin/;${workspace}Alerts/bin/;${workspace}Core/bin/;${workspace}DTOClients/bin/;" destdir="${workspace}Correspondence/bin/" srcdir="${workspace}Correspondence/src/"  includes="**/*.java" />
       </target>	
 
 	<!-- Compile Assessment -->
@@ -61,7 +61,7 @@
 				</patternset>
 			</fileset>
 		</delete>				
-		<javac encoding="UTF-8" encoding="UTF-8" debug="on" classpath="${ant_classpath};${workspace}Admin/bin/;${workspace}Core/bin/;${workspace}DomainObjects/bin/;${workspace}ValueObjects/bin/;" destdir="${workspace}Assessment/bin/" srcdir="${workspace}Assessment/src/"  includes="**/*.java" />
+		<javac encoding="UTF-8" debug="on" classpath="${ant_classpath};${workspace}Admin/bin/;${workspace}Core/bin/;${workspace}DomainObjects/bin/;${workspace}ValueObjects/bin/;" destdir="${workspace}Assessment/bin/" srcdir="${workspace}Assessment/src/"  includes="**/*.java" />
 	</target>
 
 	<!-- Compile Clinical-->
@@ -264,15 +264,15 @@
 
 	<!-- Compile Racpc -->
 	<target name="Racpc" depends="Core, Clinical,Admin" >
-		<mkdir dir="${workspace}Racpc/bin" />
+		<mkdir dir="${workspace}RACPC/bin" />
 		<delete includeEmptyDirs="true" quiet="true">
-			<fileset dir="${workspace}Racpc/bin">
+			<fileset dir="${workspace}RACPC/bin">
 				<patternset>
 					<include name="**/*.class"/>
 				</patternset>
 			</fileset>
 		</delete>		
-		<javac encoding="UTF-8" debug="on" classpath="${ant_classpath};${workspace}Admin/bin/;${workspace}Alerts/bin/;${workspace}Core/bin/;${workspace}DomainObjects/bin/;${workspace}ValueObjects/bin/;${workspace}Clinical/bin/;" destdir="${workspace}Racpc/bin/" srcdir="${workspace}Racpc/src/"  includes="**/*.java" />
+		<javac encoding="UTF-8" debug="on" classpath="${ant_classpath};${workspace}Admin/bin/;${workspace}Alerts/bin/;${workspace}Core/bin/;${workspace}DomainObjects/bin/;${workspace}ValueObjects/bin/;${workspace}Clinical/bin/;" destdir="${workspace}RACPC/bin/" srcdir="${workspace}RACPC/src/"  includes="**/*.java" />
 	</target>
 
 
@@ -286,7 +286,7 @@
 ims.warfile.version=${project.name}_${build.number}
 ims.warfile.timestamp=${timestamp}
 		</echo>
-		<war destfile="${workspace}WebApp/${project.name}.war" webxml="${workspace}WebApp/WEB-INF/web.xml">
+		<war zip64Mode="as-needed" destfile="${workspace}WebApp/${project.name}.war" webxml="${workspace}WebApp/WEB-INF/web.xml">
 			<fileset refid="WebApp.static.content" />
 			<lib refid="WebApp.lib.content" />
 			<lib dir="${libdir}">
@@ -340,7 +340,7 @@ ims.warfile.timestamp=${timestamp}
 			<classes dir="${workspace}COE/bin" />
             	<classes dir="${workspace}Pathways/bin" />
 			<classes dir="${workspace}Scheduling/bin" />
-			<classes dir="${workspace}Racpc/bin" />
+			<classes dir="${workspace}RACPC/bin" />
             	<classes dir="${workspace}Correspondence/bin" />
    	            <classes dir="${workspace}Emergency/bin" />
    	            <classes dir="${workspace}Billing/bin" />
